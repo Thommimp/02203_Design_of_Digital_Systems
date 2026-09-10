@@ -1,0 +1,31 @@
+<mxfile host="Electron">
+  <diagram name="Page-1" id="iWyJwpA4FenD6Bp7_mTV">
+    <mxGraphModel dx="1717" dy="1043" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="PK-UjKJBOpWYD3QkA0RI-3" edge="1" parent="1" source="PK-UjKJBOpWYD3QkA0RI-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="PK-UjKJBOpWYD3QkA0RI-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PK-UjKJBOpWYD3QkA0RI-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="&lt;div&gt;S0: Start&lt;/div&gt;&lt;div&gt;Wait for the REQ signal&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="330" y="170" as="geometry" />
+        </mxCell>
+        <mxCell id="PK-UjKJBOpWYD3QkA0RI-5" edge="1" parent="1" source="PK-UjKJBOpWYD3QkA0RI-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="PK-UjKJBOpWYD3QkA0RI-4">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PK-UjKJBOpWYD3QkA0RI-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="S1: REQ =&amp;nbsp; HIGH&lt;div&gt;AB =&amp;gt; A internal GCD register&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="330" y="330" as="geometry" />
+        </mxCell>
+        <mxCell id="PK-UjKJBOpWYD3QkA0RI-7" edge="1" parent="1" source="PK-UjKJBOpWYD3QkA0RI-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" target="PK-UjKJBOpWYD3QkA0RI-6">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="PK-UjKJBOpWYD3QkA0RI-4" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="S3: REQ =&amp;nbsp; LOW&lt;div&gt;Wait for the REQ signal&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="330" y="490" as="geometry" />
+        </mxCell>
+        <mxCell id="PK-UjKJBOpWYD3QkA0RI-6" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="S4: REQ =&amp;nbsp; HIGH&lt;div&gt;AB =&amp;gt; B internal GCD register&lt;/div&gt;" vertex="1">
+          <mxGeometry height="80" width="190" x="330" y="670" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
