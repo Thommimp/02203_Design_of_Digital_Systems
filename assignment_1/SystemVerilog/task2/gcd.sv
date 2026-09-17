@@ -20,7 +20,11 @@ module gcd (
     output logic          ack,    // Input received / Computation is complete.
     output logic [15 : 0] C       // The result.
 );
-    typedef enum logic [1 : 0] { ... } state_t; // Input your own state names here
+    typedef enum logic [1 : 0] {
+     idle,
+     reg_input, 
+     comb_logic
+     } state_t; // Input your own state names here
 
     shortint unsigned reg_a, next_reg_a, reg_b, next_reg_b;
     
@@ -30,12 +34,34 @@ module gcd (
     always_comb begin
         case (state)
             // <COMBINATORIAL BODY> 
+            idle: begin
+                //idle logic
+                if (req == 1) begin
+                    next_state = reg_input;
+                end
+            end
+            
+            reg_input: begin
+                
+            
+            end
+            
+            default: begin
+                next_state = idle
+            end
+            
+          
+            
+            
         endcase
     end
 
         // Register
     always_ff @(posedge clk or posedge reset) begin
         // <REGISTER BODY>
+        if (reset)
+            state <= idle;
+        else
+            state <= next_state;
     end
-
 endmodule
