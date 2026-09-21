@@ -102,14 +102,16 @@ module gcd (
 
         // Register
     always_ff @(posedge clk or posedge reset) begin
-        if (reset)
-            state_reg <= INIT;
+        if (reset) begin
+            state <= IDLE;
             reg_a <= '0;
             reg_b <= '0;
-        else
-            state_reg <= state_next;
-            reg_a <= next_reg_a
-            reg_b <= next_reg_b
+        end
+        else begin
+            state <= next_state;
+            reg_a <= next_reg_a;
+            reg_b <= next_reg_b;
+        end
     end
 
 endmodule
