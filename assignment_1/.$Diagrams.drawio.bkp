@@ -145,7 +145,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="bvpiNuRdl2khryjzLlf2" name="State_diagram_ASM">
-    <mxGraphModel dx="1144" dy="733" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1084" dy="659" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -361,8 +361,8 @@
         <mxCell id="Bcw-egp6JSV7iONLgJs4-60" edge="1" parent="1" source="Bcw-egp6JSV7iONLgJs4-50" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="740" y="820" />
-              <mxPoint x="740" y="200" />
+              <mxPoint x="740" y="900.08" />
+              <mxPoint x="740" y="200.08" />
             </Array>
             <mxPoint x="690" y="200" as="targetPoint" />
           </mxGeometry>
@@ -379,8 +379,8 @@
         <mxCell id="Bcw-egp6JSV7iONLgJs4-54" edge="1" parent="1" source="Bcw-egp6JSV7iONLgJs4-52" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;">
           <mxGeometry relative="1" as="geometry">
             <Array as="points">
-              <mxPoint x="690.08" y="590" />
-              <mxPoint x="690.08" y="200" />
+              <mxPoint x="690.06" y="670" />
+              <mxPoint x="690.06" y="200" />
             </Array>
             <mxPoint x="620" y="200" as="targetPoint" />
           </mxGeometry>
