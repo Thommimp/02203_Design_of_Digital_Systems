@@ -1,0 +1,12 @@
+Task 0b:
+        32 D-flip-flops:
+            - 2x 16 bit registers, RegA and RegB, to store the initial A and B as well as the values during the calculations.
+            - C is taken from RegA, so no extra register is needed. Y is the combinational output of the ALU and is stored in RegA/RegB.
+
+        52 6-input/1-output LUTs:
+            - 16 for the MUX that has 16 bit output
+            - 16 for the ALU that has 16 bit output Y
+            - 16 for the subtraction logic handling (borrow)
+            - 4 for the ALU Z signal to check if all 16 Y bits are zero
+            - 0 for the N signal, because N = Y[15]
+        A LUT has 6 inputs and only 1 output, so the number of LUTs depends on the number of output bits of each block.
