@@ -24,9 +24,18 @@ module gcd (
     } state_t;
 
     shortint unsigned reg_a, next_reg_a, reg_b, next_reg_b;
-    
+    shortint unsigned sub_x;   
+    shortint unsigned sub_y;      
+    shortint unsigned sub_result;
+    logic             a_lt_b;     // reg_a < reg_b
     state_t state, next_state;
     
+    assign a_lt_b = (reg_a < reg_b);
+    assign sub_x  = a_lt_b ? reg_b : reg_a;
+    assign sub_y  = a_lt_b ? reg_a : reg_b;
+    
+    
+    assign sub_result = sub_x - sub_y;
     // Combinatorial logic
     always_comb begin
         next_state = state;
@@ -64,19 +73,19 @@ module gcd (
             end
 
             COMPARE: begin
-                if(reg_a != reg_b)
-                    if(reg_a < reg_b) begin
-                        next_reg_b = reg_b - reg_a;
-                        next_state = COMPARE;
-                    end
-                    else begin
-                        next_reg_a = reg_a - reg_b;
-                        next_state = COMPARE;
-                    end
-                else
+                if (reg_a != reg_b) begin
+            
+                    if (a_lt_b)
+                        next_reg_b = sub_result;
+                    else
+                        next_reg_a = sub_result;
+            
+                    next_state = COMPARE;
+                end
+                else begin
                     next_state = DONE;
+                end
             end
-
             DONE: begin
                 C = reg_a;
                 ack = 1'b1;
