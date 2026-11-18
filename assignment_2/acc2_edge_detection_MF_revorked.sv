@@ -3,6 +3,7 @@
 //  Title      :  Edge-Detection design project - task 2.
 //             :
 //  Developers :  Vladimir Deriugin - s260213@student.dtu.dk
+//             :  Michał Fedorczyk  - s263523@student.dtu.dk
 //             :
 //  Purpose    :  This design contains an entity for the accelerator that must be build
 //             :  in task two of the Edge Detection design project. It contains an
@@ -89,20 +90,23 @@ module acc (
     logic [7:0] win [0:2][0:5];
     logic [1:0] slot [0:2];
     logic [7:0] pix [0:3];
+    
+    logic [6:0] wcol;   //column used by the Sobel window 
+    assign wcol = (state == RD_STORE) ? 7'd0 : col;
 
+//winblock that fill window
     always_comb begin
-
         slot = '{top, mid, bot};
         win  = '{default: '0};
         for (int r = 0; r < 3; r++) begin
-            if (col != 0)
-                win[r][0] = lb[slot[r]][col-1][31:24]; 
-            for (int i = 0; i < 4; i++)
-                win[r][i+1] = lb[slot[r]][col][8*i +: 8]; 
-            if (col != ROW_WORDS-1)
-                win[r][5] = lb[slot[r]][col+1][7:0]; 
+            if (wcol != 0)
+                win[r][0] = lb[slot[r]][wcol-1][31:24];
+        for (int i = 0; i < 4; i++)
+            win[r][i+1] = lb[slot[r]][wcol][8*i +: 8];
+            if (wcol != ROW_WORDS-1)
+                win[r][5] = lb[slot[r]][wcol+1][7:0];
         end
-
+        
         // Output pixel k is centred on win[1][k+1].
         for (int k = 0; k < 4; k++)
             pix[k] = sobel(win[0][k], win[0][k+1], win[0][k+2],
@@ -110,9 +114,9 @@ module acc (
                            win[2][k], win[2][k+1], win[2][k+2]);
 
         // Left (x = 0) and right (x = 351) image border.
-        if (col == 0)
+        if (wcol == 0)
             pix[0] = '0;
-        if (col == ROW_WORDS-1)
+        if (wcol == ROW_WORDS-1)
             pix[3] = '0;
     end
 
@@ -178,10 +182,13 @@ module acc (
             RD_STORE: begin
                 lb_we        = 1'b1;
                 next_rd_addr = rd_addr + 16'd1;
-
+                
                 if (col != ROW_WORDS-1) begin
                     next_col   = col + 7'd1;
-                    next_state = RD_REQ;
+                    en   = 1'b1;
+                    we   = 1'b0;
+                    addr = rd_addr + 16'd1;
+                    next_state = RD_STORE;
                 end
                 else begin
                     next_col = '0;
@@ -190,10 +197,19 @@ module acc (
                         next_mid   = bot;
                         next_bot   = top;
                         next_y_in  = y_in + 9'd1;
-                        next_state = RD_REQ;
+                        en   = 1'b1;
+                        we   = 1'b0;
+                        addr = rd_addr + 16'd1;
+                        next_state = RD_STORE;
                     end
                     else begin
-                        next_state = WR_CALC;
+                        addr         = wr_addr;
+                        dataW        = {pix[3], pix[2], pix[1], pix[0]};
+                        en           = 1'b1;
+                        we           = 1'b1;
+                        next_wr_addr = wr_addr + 16'd1;
+                        next_col     = 7'd1;
+                        next_state   = WR_CALC;
                     end
                 end
             end
